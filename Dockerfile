@@ -1,24 +1,22 @@
-FROM python:3.14 AS python-base
+FROM python:3.11 AS python-base
 FROM python-base AS builder-base
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
-    \
     PIP_NO_CACHE_DIR=off \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     PIP_DEFAULT_TIMEOUT=100 \
     AIOHTTP_NO_EXTENSIONS=1 \
-    \
     PYSETUP_PATH="/opt/pysetup" \
     VENV_PATH="/opt/pysetup/.venv" \
-    \
     DOCKER=true \
     GIT_PYTHON_REFRESH=quiet
 
 RUN apt-get update && \
-    apt-get install -y wget gnupg2 \
-
-RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recommends -y \
+    apt-get upgrade -y && \
+    apt-get install --no-install-recommends -y \
+    wget \
+    gnupg2 \
     build-essential \
     curl \
     ffmpeg \
@@ -37,23 +35,26 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
     python3-dev \
     python3-pip \
     xfonts-75dpi \
-    xfonts-base \
-
-RUN curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh && \
+    xfonts-base && \
+    curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh && \
     bash nodesource_setup.sh && \
     apt-get install -y nodejs && \
-    rm nodesource_setup.sh
-RUN rm -rf /var/lib/apt/lists/ /var/cache/apt/archives/ /tmp/*
+    rm nodesource_setup.sh && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* /tmp/*
 
 WORKDIR /data
 RUN mkdir /data/private
 
 RUN git clone https://github.com/coddrago/Heroku /data/Heroku
+
 WORKDIR /data/Heroku
-RUN git fetch && git checkout master && git pull
+
+RUN git fetch && \
+    git checkout master && \
+    git pull
 
 RUN pip install --no-warn-script-location --no-cache-dir -U -r requirements.txt
 
 EXPOSE 8080
-CMD ["python", "-m", "heroku", "--root"]
 
+CMD ["python", "-m", "heroku", "--root"]
