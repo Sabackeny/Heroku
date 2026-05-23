@@ -23,6 +23,5 @@ ruamel.yaml==0.17.21
 bs4==0.0.2
 orjson
 Pillow
-spotipy==2.24.0
-
+yandex-music
 # Python 3.10+
