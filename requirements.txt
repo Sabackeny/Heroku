@@ -24,4 +24,6 @@ bs4==0.0.2
 orjson
 Pillow
 yandex-music
+ffmpeg
+openai-whisper
 # Python 3.10+
