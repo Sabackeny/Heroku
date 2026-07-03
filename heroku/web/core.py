@@ -60,6 +60,7 @@ class Web(root.Web):
         super().__init__(**kwargs)
         self.app.router.add_get("/favicon.ico", self.favicon)
         self.app.router.add_static("/static/", "web-resources/static")
+        bridge.setup_bridge_routes(self)
 
     async def start_if_ready(
         self,
