@@ -37,3 +37,5 @@ def setup_bridge_routes(web_instance) -> None:
         return web.json_response({"status": "ok", "chat": chat})
 
     web_instance.app.router.add_post("/send_message", send_message)
+    web_instance.app.router.add_post("/send_message", send_message)
+    print(f"[BRIDGE] Route /send_message registered. All routes: {[r.resource.canonical for r in web_instance.app.router.routes() if r.resource]}")
