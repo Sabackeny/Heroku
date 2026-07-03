@@ -36,7 +36,7 @@ from aiohttp import web
 from ..database import Database
 from ..loader import Modules
 from ..tl_cache import CustomTelegramClient
-from . import proxypass, root
+from . import proxypass, root, bridge
 
 logger = logging.getLogger(__name__)
 
