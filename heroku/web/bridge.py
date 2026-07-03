@@ -2,6 +2,9 @@ import os
 import logging
 from aiohttp import web
 
+print("[BRIDGE] MODULE LOADED - THIS SHOULD ALWAYS PRINT ON IMPORT")
+
+
 logger = logging.getLogger("heroku.bridge")
 
 BRIDGE_SECRET = os.environ.get("BRIDGE_SECRET", "")
