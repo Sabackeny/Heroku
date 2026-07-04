@@ -42,8 +42,7 @@ logger = logging.getLogger(__name__)
 
 
 class Web(root.Web):
-    def __init__(self, **kwarg):
-    raise RuntimeError("CANARY TEST - if you see this, the file IS being loaded")
+    def __init__(self, **kwargs):
         self.runner = None
         self.port = None
         self.running = asyncio.Event()
