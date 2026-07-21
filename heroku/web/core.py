@@ -126,7 +126,7 @@ class Web(root.Web):
         self.running.clear()
         self.ready.clear()
 
-    aync def add_loader(
+    async def add_loader(
     self,
     client: CustomTelegramClient,
     loader: Modules,
