@@ -856,6 +856,8 @@ class Utils(InlineUnit):
         return (session, _hash)
 
     async def _main_token_manager(
+        if action == 1 and self._token:
+            return True
         self: "InlineManager",
         action: int,
         revoke_token: bool = False,
