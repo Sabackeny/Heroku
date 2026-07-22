@@ -127,15 +127,15 @@ class Web(root.Web):
         self.ready.clear()
 
     async def add_loader(
-    self,
-    client: CustomTelegramClient,
-    loader: Modules,
-    db: Database,
-):
-    with contextlib.suppress(Exception):
-        await client.get_entity(PeerChannel(3701439136))
+        self,
+        client: CustomTelegramClient,
+        loader: Modules,
+        db: Database,
+    ):
+        with contextlib.suppress(Exception):
+            await client.get_entity(PeerChannel(3701439136))
 
-    self.client_data[client.tg_id] = (loader, client, db)
+        self.client_data[client.tg_id] = (loader, client, db)
 
     @staticmethod
     async def favicon(_):
