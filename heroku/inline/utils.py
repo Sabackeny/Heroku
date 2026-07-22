@@ -856,8 +856,6 @@ class Utils(InlineUnit):
         return (session, _hash)
 
     async def _main_token_manager(
-        if action == 1 and self._token:
-            return True
         self: "InlineManager",
         action: int,
         revoke_token: bool = False,
@@ -866,6 +864,9 @@ class Utils(InlineUnit):
         username: str = "",
         commands: dict[str, str] = dict(),
     ) -> bool | None:
+        if action == 1 and self._token:
+            return True
+
         url: str = (
             await self._client(
                 RequestWebViewRequest(
