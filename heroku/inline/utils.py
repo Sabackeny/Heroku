@@ -865,7 +865,7 @@ class Utils(InlineUnit):
         commands: dict[str, str] = dict(),
     ) -> bool | None:
         if action == 1 and self._token:
-            return True
+            return True 
 
         url: str = (
             await self._client(
