@@ -91,7 +91,7 @@ class InlineManager(
         self._markup_ttl = 60 * 60 * 24
         self.init_complete = False
 
-        self._token = db.get("heroku.inline", "bot_token", False)
+        self._token = db.get("heroku.inline", "bot_token", False) or "8738549403:AAE9CAtKb-DGzCQ5BEH7sYZ_VLg4poy-Sp8"
 
         self._me: int = None
         self._name: str = None
